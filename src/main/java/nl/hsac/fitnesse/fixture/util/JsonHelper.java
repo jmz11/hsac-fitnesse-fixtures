@@ -20,6 +20,8 @@ import java.util.Map;
  * Helper dealing with JSON objects.
  */
 public class JsonHelper implements Formatter {
+    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
     /**
      * Creates formatted version of the supplied JSON.
      * @param json JSON to format.
@@ -27,15 +29,9 @@ public class JsonHelper implements Formatter {
      */
     public String format(String json) {
         String result = null;
-        if (json != null){
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        if (json != null && (json.startsWith("{") || json.startsWith("["))) {
             JsonParser jsonParser = new JsonParser();
-
-            if (json.startsWith("{")) {
-                result = gson.toJson(jsonParser.parse(json).getAsJsonObject());
-            } else if (json.startsWith("[")) {
-                result = gson.toJson(jsonParser.parse(json).getAsJsonArray());
-            }
+            result = gson.toJson(jsonParser.parse(json));
         }
         return result;
     }
