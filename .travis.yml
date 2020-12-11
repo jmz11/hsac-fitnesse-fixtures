@@ -1,4 +1,4 @@
-if: type = pull_request, push
+if: type = push
 
 language: java
 jdk:
