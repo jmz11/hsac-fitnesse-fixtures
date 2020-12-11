@@ -14,5 +14,10 @@ cache:
   directories:
   - $HOME/.m2
 
+jobs:
+  include:
+      - name: NonDex
+        script: chmod +x ./nondex.sh ; ./nondex.sh
+
 script:
   - mvn -DfitnesseSuiteToRun=HsacAcceptanceTests -DseleniumBrowser=chrome "-DseleniumJsonProfile={'args':['headless', 'disable-gpu']}" test failsafe:integration-test
