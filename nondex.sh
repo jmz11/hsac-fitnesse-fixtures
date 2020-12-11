@@ -1,11 +1,8 @@
 #!/bin/bash
 
-if [[ -z $TRAVIS_COMMIT_RANGE ]]
-then 
-    TRAVIS_COMMIT_RANGE=$(git rev-parse master)...$(git rev-parse HEAD)
-fi
+TRAVIS_COMMIT_RANGE=$(git rev-parse master)...$(git rev-parse HEAD)
 nondextests=$(git diff --name-status --diff-filter=AM $TRAVIS_COMMIT_RANGE | grep /test/ | sed -e 's;.*test/java/;;' -e 's/.java//' -e 's;/;.;g')
-
+echo $nondextests
 if [ ! -z $nondextests ]
 then
     printf "Running NonDex on tests:\n$nondextests\n"
