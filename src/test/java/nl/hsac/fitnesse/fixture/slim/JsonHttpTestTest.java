@@ -30,6 +30,7 @@ public class JsonHttpTestTest {
 
     @Test
     public void testFormatJsonArray() {
+        System.out.println("test known flaky");
         String expected = "<pre>[{\n" +
                 "    &quot;category&quot;: &quot;reference&quot;,\n" +
                 "    &quot;nested&quot;: {\n" +

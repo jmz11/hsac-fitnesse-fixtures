@@ -14,7 +14,7 @@ then
 fi  
 if [ -d ".nondex" ]
 then
-    flakyTests=$(awk ' !x[$0]++' */.nondex/*/failures)
+    flakyTests=$(awk ' !x[$0]++' .nondex/*/failures)
 fi
 if [ ! -z "$flakyTests" ]
 then 
